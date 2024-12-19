@@ -4,8 +4,14 @@ import { AddCategory } from './components/AddCategory';
 
 export const GiftExpertApp : React.FC = () => {
 
-  const [categories, setCategories] = useState(['Goku','desnudas']);
+  const [categories, setCategories] = useState(['goku','desnudas']);
 
+
+  // const onAddCategory = ( newCategory : string) : void  => {
+  
+  //   setCategories( (category : Array<string>) => [...category, newCategory]);
+  // }
+  
 
   
 
@@ -16,7 +22,13 @@ export const GiftExpertApp : React.FC = () => {
     <h1> GiftExpertApp </h1>
     {/* input */}
     
-    <AddCategory/>
+    <AddCategory categories={ categories } setCategories={ setCategories }/>
+ 
+    <button type="button"
+      // onClick={ () => onAddCategory() }
+    >
+      Add Category
+    </button>
  
 
 
