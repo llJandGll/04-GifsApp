@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { AddCategory } from './components/AddCategory';
 
 
 export const GiftExpertApp : React.FC = () => {
@@ -14,7 +15,8 @@ export const GiftExpertApp : React.FC = () => {
     {/* titulo */}
     <h1> GiftExpertApp </h1>
     {/* input */}
-   
+    
+    <AddCategory/>
  
 
 
