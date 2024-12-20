@@ -4,16 +4,27 @@ import { AddCategory } from './components/AddCategory';
 
 export const GiftExpertApp : React.FC = () => {
 
-  const [categories, setCategories] = useState(['goku','desnudas']);
+  const [categories, setCategories] = useState<Array<string>>([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
 
-  // const onAddCategory = ( newCategory : string) : void  => {
-  
-  //   setCategories( (category : Array<string>) => [...category, newCategory]);
-  // }
-  
+ const onNewCategory = ( newCategory : string ) : void  => {
+  console.log(newCategory)
 
-  
+  if ( categories.includes( newCategory )) {
+    setErrorMessage('The category already exist');
+    return;
+  }
+  setCategories( (category : Array<string>) => [...category, newCategory]);
+ }
+
+ const handleError = ()   => {
+    return {
+    setErrorMessage : setErrorMessage,
+    errorMessage : errorMessage
+   }
+  }
+
 
 
   return (
@@ -22,22 +33,22 @@ export const GiftExpertApp : React.FC = () => {
     <h1> GiftExpertApp </h1>
     {/* input */}
     
-    <AddCategory categories={ categories } setCategories={ setCategories }/>
- 
-    <button type="button"
-      // onClick={ () => onAddCategory() }
-    >
-      Add Category
-    </button>
- 
+    <AddCategory 
+      onNewCategory={ (value : string) => onNewCategory(value) }
+      handleError={ handleError }
+      // categories={ categories } 
+      // setCategories={ setCategories }
+    />
+
+
 
 
     
     <ol>
       {
-        categories.map( ( category , id: number ) => {
+        categories.map( ( category , index: number ) => {
           return (
-            <li key={ id }>{ category }</li>
+            <li key={ index }>{ category }</li>
           )
         })
       }
