@@ -5,43 +5,37 @@ import { AddCategoryProps } from "../interfaces";
 
 export const AddCategory : React.FC<AddCategoryProps> = ({ onNewCategory, handleError }) => {
 
-  const [initialValue, setInitialValue] = useState("");
+  const [searchInputValue, setSearchInputValue] = useState("");
   const {errorMessage , setErrorMessage } = handleError();
 
   const onSubmit = ( event : FormEvent) : void  => {
     event.preventDefault();
-    if( initialValue.trim().length === 0 ) {
-      setErrorMessage('the field is empty');
-      return;
-    }
+    
+    inputValidation( searchInputValue );
 
-    // if( categories?.includes(initialValue) ) {
-    //   setErrorMessage('La categoria ya existe');
-    //   setInitialValue('');
-    //   return;
-    // }
-    onNewCategory( initialValue.toLocaleLowerCase() );
+    onNewCategory( searchInputValue.toLocaleLowerCase() );
 
-    setInitialValue('');
+    setSearchInputValue('');
 
   }
 
+  const inputValidation = ( inputValue : string ) : void => {
+    if( inputValue.trim().length === 0 ) {
+      setErrorMessage('the field is empty');
+      return;
+    }
+  }
    
   const onAddCateryButton = ( ) : void  => {
-    if( initialValue.trim().length === 0 ) {
-      setErrorMessage('the field is empty');
-      return;
-    }
-    onNewCategory( initialValue );
-    setInitialValue('');
+   inputValidation( searchInputValue );
+    onNewCategory( searchInputValue );
+    setSearchInputValue('');
   }
   
 
-  // onAddCategoryButton( initialValue );
-  
   const onInputChange = ( { target } : FormEvent) : void  => {
     const { value } = target as HTMLInputElement;
-    setInitialValue( value );
+    setSearchInputValue( value );
     
     setErrorMessage('');
   }
@@ -52,7 +46,7 @@ export const AddCategory : React.FC<AddCategoryProps> = ({ onNewCategory, handle
       <input 
        type="text" 
         placeholder="Buscar Gif"
-        value={ initialValue }
+        value={ searchInputValue }
         onChange={ onInputChange }
       />
       
