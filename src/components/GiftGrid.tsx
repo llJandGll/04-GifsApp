@@ -8,7 +8,6 @@ export const GiftGrid: React.FC<CategoryProps> = ({ category }) => {
 
   const { gifs , isLoading } = useFetchGifs( category );
  
-  console.log({isLoading})
   
   return (
     <>

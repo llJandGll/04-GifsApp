@@ -8,7 +8,6 @@ export const AddCategory : React.FC<AddCategoryProps> = ({ onNewCategory, handle
   const [searchInputValue, setSearchInputValue] = useState("");
   const {errorMessage , setErrorMessage } = handleError();
 
-  console.log("se disparo el componente AddCategory");
   const onSubmit = ( event : FormEvent) : void  => {
     event.preventDefault();
     
