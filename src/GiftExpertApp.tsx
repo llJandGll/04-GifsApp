@@ -14,6 +14,12 @@ export const GiftExpertApp : React.FC = () => {
     setCategories( (category : Array<string>) => [ newCategory, ...category ]);
   }
 
+  const onDeleteCategory = ( category : string ) : void => { 
+    console.log({category})
+    const newCategories = categories.filter(( catCurrent : string ) => catCurrent !== category );
+    setCategories( newCategories );  
+  }
+
   const handleError = ()   => {
     return {
       setErrorMessage : setErrorMessage,
@@ -30,7 +36,11 @@ export const GiftExpertApp : React.FC = () => {
       />
       {
         categories.map( ( category ) => (
-          <GiftGrid key={ category } category ={ category } />
+            <GiftGrid 
+              key={ category } 
+              category ={ category } 
+              onDeleteCategory={ onDeleteCategory }
+            />
         ))
       }
     </>
