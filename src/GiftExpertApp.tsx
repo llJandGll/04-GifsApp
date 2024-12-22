@@ -30,9 +30,9 @@ export const GiftExpertApp : React.FC = () => {
         handleError={ handleError }
       />
       {
-        categories.map( ( category ) => {
-          return <GiftGrid key={ category } category ={ category } />
-        })
+        categories.map( ( category ) => (
+          <GiftGrid key={ category } category ={ category } />
+        ))
       }
     </>
   )

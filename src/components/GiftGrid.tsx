@@ -1,34 +1,28 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 
 import { CategoryProps, Gif } from "../interfaces";
-import { getGifs } from "../helpers/getGifts";
 import { GifItem } from "./GifItem";
+import { useFetchGifs } from '../hooks/useFetchGifs';
 
 export const GiftGrid: React.FC<CategoryProps> = ({ category }) => {
-  const [gifs, setGifs] = useState<Gif[]>([]);
-  
 
-   const gifsSearched = useCallback( async () => {
-    const gifs = await getGifs(category);
-    setGifs(gifs);
-   }, [category]);
-
-
-  useEffect(() => {
-
-    gifsSearched();
-
-  }, [gifsSearched]);
+  const { gifs , isLoading } = useFetchGifs( category );
+ 
+  console.log({isLoading})
   
   return (
     <>
       <h2>{ category }</h2>
 
       <div className="card-grid">
+        
+        {
+          isLoading && <p>Loading...</p>
+        }
         {
           gifs.map(( gif : Gif) => (
-            <GifItem key={ gif.id } {...gif} />
-          ))
+              <GifItem key={ gif.id } {...gif} />
+            ))
         }
       </div>
     </>
