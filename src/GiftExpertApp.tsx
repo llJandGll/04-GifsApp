@@ -1,60 +1,39 @@
-import React, { useState } from 'react'
-import { AddCategory } from './components/AddCategory';
-
+import React, { useState } from 'react';
+import { AddCategory, GiftGrid } from './components';
 
 export const GiftExpertApp : React.FC = () => {
-
   const [categories, setCategories] = useState<Array<string>>([]);
   const [errorMessage, setErrorMessage] = useState("");
+  
+  console.log("se disparo el componente GiftExpertApp");
 
-
- const onNewCategory = ( newCategory : string ) : void  => {
-  console.log(newCategory)
-
-  if ( categories.includes( newCategory )) {
-    setErrorMessage('The category already exist');
-    return;
+  const onNewCategory = ( newCategory : string ) : void  => {
+    if ( categories.includes( newCategory )) {
+      setErrorMessage('The category already exist');
+      return;
+    }
+    setCategories( (category : Array<string>) => [ newCategory, ...category ]);
   }
-  setCategories( (category : Array<string>) => [...category, newCategory]);
- }
 
- const handleError = ()   => {
+  const handleError = ()   => {
     return {
-    setErrorMessage : setErrorMessage,
-    errorMessage : errorMessage
-   }
+      setErrorMessage : setErrorMessage,
+      errorMessage : errorMessage
+    }
   }
-
-
 
   return (
     <>
-    {/* titulo */}
-    <h1> GiftExpertApp </h1>
-    {/* input */}
-    
-    <AddCategory 
-      onNewCategory={ (value : string) => onNewCategory(value) }
-      handleError={ handleError }
-      // categories={ categories } 
-      // setCategories={ setCategories }
-    />
-
-
-
-
-    
-    <ol>
+      <h1> GiftExpertApp </h1>
+      <AddCategory 
+        onNewCategory={ (value : string) => onNewCategory(value) }
+        handleError={ handleError }
+      />
       {
-        categories.map( ( category , index: number ) => {
-          return (
-            <li key={ index }>{ category }</li>
-          )
+        categories.map( ( category ) => {
+          return <GiftGrid key={ category } category ={ category } />
         })
       }
-    </ol>
-    {/* listado de gifts */}
-
     </>
   )
 }

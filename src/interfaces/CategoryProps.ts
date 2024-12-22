@@ -1,4 +1,4 @@
 export interface CategoryProps  {
-  categories? : Array<string>;
-  setCategories : React.Dispatch<React.SetStateAction<string[]>>;
+  category : string;
+  // setCategories : React.Dispatch<React.SetStateAction<string[]>>;
 }
