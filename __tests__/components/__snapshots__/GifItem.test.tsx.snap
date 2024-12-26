@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test in GiftItem.tsx > should show a snapshot 1`] = `
+<div>
+  <div
+    class="card"
+  >
+    <img
+      alt="goku"
+      src="https://localhost/goku.gif"
+    />
+    <p>
+      goku
+    </p>
+  </div>
+</div>
+`;
