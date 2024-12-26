@@ -5,7 +5,6 @@ export const GiftExpertApp : React.FC = () => {
   const [categories, setCategories] = useState<Array<string>>([]);
   const [errorMessage, setErrorMessage] = useState("");
   
-  console.log("se disparo el componente GiftExpertApp");
 
   const onNewCategory = ( newCategory : string ) : void  => {
     if ( categories.includes( newCategory )) {

@@ -8,11 +8,10 @@ export const AddCategory : React.FC<AddCategoryProps> = ({ onNewCategory, handle
   const [searchInputValue, setSearchInputValue] = useState("");
   const {errorMessage , setErrorMessage } = handleError();
 
-  console.log("se disparo el componente AddCategory");
   const onSubmit = ( event : FormEvent) : void  => {
     event.preventDefault();
     
-    inputValidation( searchInputValue );
+    if (inputValidation( searchInputValue ))
 
     onNewCategory( searchInputValue.toLocaleLowerCase() );
 
@@ -20,11 +19,12 @@ export const AddCategory : React.FC<AddCategoryProps> = ({ onNewCategory, handle
 
   }
 
-  const inputValidation = ( inputValue : string ) : void => {
+  const inputValidation = ( inputValue : string ) : boolean => {
     if( inputValue.trim().length === 0 ) {
       setErrorMessage('the field is empty');
-      return;
+      return false;
     }
+    return true;
   }
    
   const onAddCateryButton = ( ) : void  => {
@@ -43,7 +43,7 @@ export const AddCategory : React.FC<AddCategoryProps> = ({ onNewCategory, handle
   
   
   return (
-    <form onSubmit={ onSubmit }>
+    <form onSubmit={ onSubmit } aria-label="form">
       <input 
        type="text" 
         placeholder="Buscar Gif"
