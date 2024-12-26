@@ -1,0 +1,41 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`test in <GiftExperApp/> > should first 1`] = `
+<div>
+  <h1>
+     GiftExpertApp 
+  </h1>
+  bound HTMLFormElement {
+    "0": <input
+      placeholder="Buscar Gif"
+      type="text"
+      value=""
+    />,
+    "1": <button
+      type="button"
+    >
+      Add Category
+    </button>,
+  }
+</div>
+`;
+
+exports[`test in <GiftExperApp/> > should return the aplication of title  1`] = `
+<div>
+  <h1>
+     GiftExpertApp 
+  </h1>
+  bound HTMLFormElement {
+    "0": <input
+      placeholder="Buscar Gif"
+      type="text"
+      value=""
+    />,
+    "1": <button
+      type="button"
+    >
+      Add Category
+    </button>,
+  }
+</div>
+`;
